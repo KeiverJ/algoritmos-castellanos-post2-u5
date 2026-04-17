@@ -84,15 +84,40 @@ Se comparo empiricamente el rendimiento de Dijkstra vs BFS en grafos no ponderad
 - BFS resuelve SSSP en O(V+E)
 - Dijkstra lo hace en O((V+E) log V) pero con pesos uniformes = 1
 
-### Resultados Reales
+### Resultados
+
+```
+Vertices: 1000
+----------------------------------------
+Dijkstra:     3,668 ops/s
+BFS:          9,625 ops/s
+Ratio BFS/Dijkstra: 2.62x
+
+Vertices: 5000
+----------------------------------------
+Dijkstra:     3,086 ops/s
+BFS:          5,691 ops/s
+Ratio BFS/Dijkstra: 1.84x
+```
+
+### Analisis
 
 | Vertices | BFS (ops/s) | Dijkstra (ops/s) | Ratio |
 |----------|-------------|------------------|-------|
-| 1000     | 8,832       | 3,177            | 2.78x |
-| 5000     | 4,727       | 3,009            | 1.57x |
+| 1000     | 9,625       | 3,668            | 2.62x |
+| 5000     | 5,691       | 3,086            | 1.84x |
 
-### Analisis
-BFS es entre 1.5x y 2.8x mas rapido que Dijkstra en grafos no ponderados. Esto refleja el costo adicional del heap (PriorityQueue) en Dijkstra para grafos donde el peso uniforme hace innecesaria la estructura de prioridad. BFS usa un array queue simple que es mas eficiente para grafos no ponderados.
+**Conclusion:**
+
+BFS es entre 1.8x y 2.6x mas rapido que Dijkstra en grafos no ponderados. Esto se debe a que:
+
+1. **BFS** usa una cola simple (ArrayDeque) con operaciones O(1) para insertar/obtener
+2. **Dijkstra** usa PriorityQueue con operaciones O(log V) para insertar/obtener
+3. En grafos no ponderados, todos los pesos son 1, no hay necesidad de ordenar por peso, por lo que el heap es innecesario
+
+**Conclusion teorica vs empirica:**
+- Teorica: BFS O(V+E) vs Dijkstra O((V+E) log V)
+- Empirica: Confirma que el factor log V tiene un costo significativo en grafos no ponderados
 
 ## Requisitos
 - Java 17+
