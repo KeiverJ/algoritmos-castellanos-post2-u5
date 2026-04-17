@@ -10,16 +10,16 @@ class MSTTest {
     @Test
     void testKruskalBasic() {
         int[][] edges = {
-            {0, 1, 10},
-            {0, 2, 6},
-            {0, 3, 5},
-            {1, 3, 15},
+            {0, 1, 5},
+            {0, 2, 10},
+            {1, 2, 3},
+            {1, 3, 2},
             {2, 3, 4}
         };
 
         int result = MST.kruskal(edges, 4);
 
-        assertEquals(14, result);
+        assertEquals(10, result);
     }
 
     @Test
@@ -40,16 +40,16 @@ class MSTTest {
     @Test
     void testPrimBasic() {
         WeightedGraph g = new WeightedGraph(4);
-        g.addEdge(0, 1, 10);
-        g.addEdge(0, 2, 6);
-        g.addEdge(0, 3, 5);
-        g.addEdge(1, 3, 15);
+        g.addEdge(0, 1, 5);
+        g.addEdge(0, 2, 10);
+        g.addEdge(1, 2, 3);
+        g.addEdge(1, 3, 2);
         g.addEdge(2, 3, 4);
 
         List<List<int[]>> adj = g.getAdjacencyList();
         int result = MST.prim(adj, 4);
 
-        assertEquals(14, result);
+        assertEquals(10, result);
     }
 
     @Test
@@ -70,10 +70,10 @@ class MSTTest {
     @Test
     void testKruskalAndPrimSameResult() {
         int[][] edges = {
-            {0, 1, 10},
-            {0, 2, 6},
-            {0, 3, 5},
-            {1, 3, 15},
+            {0, 1, 5},
+            {0, 2, 10},
+            {1, 2, 3},
+            {1, 3, 2},
             {2, 3, 4}
         };
 
