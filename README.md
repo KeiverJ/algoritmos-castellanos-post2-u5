@@ -78,21 +78,21 @@ mvn package
 java -jar target/benchmarks.jar
 ```
 
-## Benchmark JMH: Dijkstra vs BFS
+## Benchmark: Dijkstra vs BFS
 
 Se comparo empiricamente el rendimiento de Dijkstra vs BFS en grafos no ponderados.
 - BFS resuelve SSSP en O(V+E)
 - Dijkstra lo hace en O((V+E) log V) pero con pesos uniformes = 1
 
-### Resultados
+### Resultados Reales
 
 | Vertices | BFS (ops/s) | Dijkstra (ops/s) | Ratio |
 |----------|-------------|------------------|-------|
-| 1000     | ~850,000    | ~520,000         | ~1.6x |
-| 5000     | ~95,000     | ~48,000          | ~2.0x |
+| 1000     | 8,832       | 3,177            | 2.78x |
+| 5000     | 4,727       | 3,009            | 1.57x |
 
 ### Analisis
-BFS es entre 1.5x y 2x mas rapido que Dijkstra en grafos no ponderados. Esto refleja el costo adicional del heap (PriorityQueue) en Dijkstra para grafos donde el peso uniforme hace innecesaria la estructura de prioridad. La diferencia se acentua con grafos mas grandes debido al factor log V en las operaciones del heap.
+BFS es entre 1.5x y 2.8x mas rapido que Dijkstra en grafos no ponderados. Esto refleja el costo adicional del heap (PriorityQueue) en Dijkstra para grafos donde el peso uniforme hace innecesaria la estructura de prioridad. BFS usa un array queue simple que es mas eficiente para grafos no ponderados.
 
 ## Requisitos
 - Java 17+

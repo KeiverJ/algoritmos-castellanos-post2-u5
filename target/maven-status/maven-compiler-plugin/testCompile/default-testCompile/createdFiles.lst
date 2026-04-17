@@ -1,0 +1,7 @@
+com\grafos\DijkstraTest.class
+com\grafos\MSTTest.class
+com\grafos\SCCTest.class
+com\grafos\BellmanFordTest.class
+com\grafos\UnionFindTest.class
+com\grafos\TopSortTest.class
+com\grafos\BFSTest.class
