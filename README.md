@@ -139,7 +139,7 @@ BFS es entre 1.8x y 2.6x mas rapido que Dijkstra en grafos no ponderados. Esto s
 
 ### Tests JUnit 5
 
-![Tests JUnit](capturas/tests.png)
+![Tests JUnit](capturas/test-pasados.png)
 
 *Figura 1: Ejecucion de tests JUnit 5 - 29 tests, todos exitosos*
 
